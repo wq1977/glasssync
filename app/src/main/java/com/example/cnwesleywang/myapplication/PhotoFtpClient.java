@@ -66,7 +66,7 @@ public class PhotoFtpClient {
                         Log.d("MyGlassWare", "Picture path: " + path + " " + remotename);
 
                         try {
-                            ftpClient.connect(InetAddress.getByName(ip), 3721);
+                            ftpClient.connect(InetAddress.getByName(ip), 21);
                             if (!ftpClient.login("cnwesleywang", "1")) {
                                 ftpClient.logout();
                                 return "Login to server fail!";

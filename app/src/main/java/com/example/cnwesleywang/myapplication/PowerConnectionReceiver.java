@@ -3,6 +3,9 @@ package com.example.cnwesleywang.myapplication;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     public PowerConnectionReceiver() {
@@ -10,6 +13,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        new PhotoFtpClient(context).go();
+        Log.d("wesley","onReceive!!!!!");
+        context.startService(new Intent(context,FtpPushService.class));
     }
 }
