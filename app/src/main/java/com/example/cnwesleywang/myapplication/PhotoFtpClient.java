@@ -35,7 +35,7 @@ public class PhotoFtpClient {
 
     public String go() {
         FTPClient ftpClient = new FTPClient();
-        String ip="10.0.1.14";
+        String ip="lily.newim.net";
 
         Total = 0;
         ArrayList<String> files = new ArrayList<String>();
@@ -67,7 +67,7 @@ public class PhotoFtpClient {
 
                         try {
                             ftpClient.connect(InetAddress.getByName(ip), 21);
-                            if (!ftpClient.login("cnwesleywang", "1")) {
+                            if (!ftpClient.login("glassftp", "wq1977@2")) {
                                 ftpClient.logout();
                                 return "Login to server fail!";
                             }

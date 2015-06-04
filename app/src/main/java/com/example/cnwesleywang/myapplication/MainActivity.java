@@ -8,6 +8,7 @@ import com.google.android.glass.widget.CardScrollView;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaScannerConnection;
@@ -17,6 +18,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -58,11 +63,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        mView = buildView("准备传输照片到手机...");
+        mView = buildView("选择相应的菜单开始工作");
         setContentView(mView);
 
-        PutMedia pm=new PutMedia();
-        pm.execute();
+        //PutMedia pm=new PutMedia();
+        //pm.execute();
 
         Log.d("MyGlassWare","My First Log should goes to console");
 
@@ -102,6 +107,48 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.stopwatch, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+            openOptionsMenu();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection. Menu items typically start another
+        // activity, start a service, or broadcast another intent.
+        switch (item.getItemId()) {
+            case R.id.photosync:
+                //TODO
+                return true;
+            case R.id.addcfg:
+                //TODO
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        Log.d("","onActivityResult:"+resultCode);
+        if (requestCode == 1 && resultCode == RESULT_OK){
+            String contents = data.getStringExtra("SCAN_RESULT");
+            Log.d("","contents:"+contents);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

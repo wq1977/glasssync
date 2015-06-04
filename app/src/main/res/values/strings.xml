@@ -2,4 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_main">照片同步器</string>
     <string name="hello_world">Hello glass world!</string>
+    <string name="addcfg">修改配置</string>
+    <string name="sync">同步照片</string>
 </resources>
